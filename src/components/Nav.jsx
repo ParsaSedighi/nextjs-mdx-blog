@@ -1,21 +1,61 @@
 import Link from 'next/link';
-import styles from '../../styles/Link.module.css';
+import {
+  AiOutlineHome,
+  AiOutlineFieldTime,
+  AiOutlineFire,
+} from 'react-icons/ai';
+import { BiCategoryAlt, BiBookmark } from 'react-icons/bi';
 
 const Nav = () => {
   return (
     <nav>
-      <div className="flex items-center justify-center px-8 py-5 mx-8 md:mx-16 md:justify-start">
-        <div className="flex items-end space-x-8">
-          <Link className={'text-3xl py-1' + ` ${styles.link}`} href="#">
-            MDX Blog
-          </Link>
-          <Link
-            className={'hidden text-xl md:block py-1' + ` ${styles.link}`}
-            href="#">
-            About
-          </Link>
-        </div>
+      <div className="flex items-center justify-center py-5">
+        <Link href="/" className="mt-5 text-4xl font-bold text-turquoise-blue">
+          MDX Blog
+        </Link>
       </div>
+      <ul className="justify-center hidden mt-5 space-x-16 text-lg text-white md:flex">
+        <li key="1">
+          <Link
+            className="flex items-center space-x-1 hover:text-cadet-blue"
+            href="/">
+            <AiOutlineHome className="w-4" />
+            <p>Home</p>
+          </Link>
+        </li>
+        <li key="2">
+          <Link
+            className="flex items-center space-x-1 hover:text-cadet-blue"
+            href="/recent">
+            <AiOutlineFieldTime className="w-5" />
+            <p>Recent</p>
+          </Link>
+        </li>
+        <li key="3">
+          <Link
+            className="flex items-center space-x-1 hover:text-cadet-blue"
+            href="/popular">
+            <AiOutlineFire className="w-4" />
+            <p>Popular</p>
+          </Link>
+        </li>
+        <li key="4">
+          <Link
+            className="flex items-center space-x-1 hover:text-cadet-blue"
+            href="/categories">
+            <BiCategoryAlt className="w-4" />
+            <p>Categories</p>
+          </Link>
+        </li>
+        <li key="5">
+          <Link
+            className="flex items-center space-x-1 hover:text-cadet-blue"
+            href="/bookmarks">
+            <BiBookmark className="w-4" />
+            <p>Bookmarks</p>
+          </Link>
+        </li>
+      </ul>
     </nav>
   );
 };

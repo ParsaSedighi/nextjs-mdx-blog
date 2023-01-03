@@ -4,24 +4,45 @@ import path from 'path';
 import matter from 'gray-matter';
 import Post from '../components/Post';
 
+import { AiOutlinePushpin } from 'react-icons/ai';
+
 export default function Home({ posts }) {
   return (
     <>
       <Nav />
-      <main className="mx-24 mt-7">
-        <PostList posts={posts} />
+      <main className="pb-7">
+        <div className="p-6 mx-16 mt-12 rounded-lg md:mx-24 bg-gunmetal">
+          <div className="flex items-center mb-4 text-lg text-turquoise-blue">
+            <AiOutlinePushpin />
+            <p className="pl-1">Pinned</p>
+          </div>
+          <PostList posts={posts} pinned={true} />
+        </div>
+        <div className="mx-16 md:mx-24 mt-7">
+          <PostList posts={posts} />
+        </div>
       </main>
     </>
   );
 }
 
-const PostList = ({ posts }) => {
+const PostList = ({ className, posts, pinned = false }) => {
+  const pinnedPosts = posts.map((post, index) => {
+    if (post.frontMatter.pin)
+      return (
+        <Post className="rounded-md shadow-2xl" post={post} index={index} />
+      );
+  });
+  const allPosts = posts.map((post, index) => {
+    return <Post className="shadow-lg" post={post} index={index} />;
+  });
   return (
-    <div className="grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-      {posts.map((post, index) => {
-        return <Post post={post} index={index} />;
-      })}
-    </div>
+    <ul
+      className={
+        `grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ` + className
+      }>
+      {pinned ? pinnedPosts : allPosts}
+    </ul>
   );
 };
 

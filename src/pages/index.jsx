@@ -1,4 +1,3 @@
-import Nav from '../components/Nav';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
@@ -9,7 +8,6 @@ import { AiOutlinePushpin } from 'react-icons/ai';
 export default function Home({ posts }) {
   return (
     <>
-      <Nav />
       <main className="pb-7">
         <div className="p-6 mx-16 mt-12 rounded-lg md:mx-24 bg-gunmetal">
           <div className="flex items-center mb-4 text-lg text-turquoise-blue">
@@ -33,15 +31,18 @@ const PostList = ({ className, posts, pinned = false }) => {
         <Post className="rounded-md shadow-2xl" post={post} index={index} />
       );
   });
-  const allPosts = posts.map((post, index) => {
-    return <Post className="shadow-lg" post={post} index={index} />;
+  const restPosts = posts.map((post, index) => {
+    if (!post.frontMatter.pin)
+      return (
+        <Post className="rounded-md shadow-2xl" post={post} index={index} />
+      );
   });
   return (
     <ul
       className={
         `grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ` + className
       }>
-      {pinned ? pinnedPosts : allPosts}
+      {pinned ? pinnedPosts : restPosts}
     </ul>
   );
 };

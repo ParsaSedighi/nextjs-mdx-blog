@@ -9,9 +9,15 @@ const components = { SyntaxHighlighter };
 
 const PostPage = ({ frontMatter: { title, date }, mdxSource }) => {
   return (
-    <div className="mt-4">
-      <h1>{title}</h1>
-      <MDXRemote {...mdxSource} components={components} />
+    <div className="p-8 mx-16 mt-10 rounded-md md:mx-24 bg-gunmetal">
+      <h1 className="flex font-serif text-4xl font-medium text-white">
+        {title}
+      </h1>
+      <p className="pt-2 pb-2 text-gray-400">{date}</p>
+      <br />
+      <div className="prose prose-invert max-w-none">
+        <MDXRemote {...mdxSource} components={components} />
+      </div>
     </div>
   );
 };

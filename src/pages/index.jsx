@@ -31,6 +31,7 @@ const PostList = ({ className, posts, pinned = false }) => {
         <Post className="rounded-md shadow-2xl" post={post} index={index} />
       );
   });
+
   const restPosts = posts.map((post, index) => {
     if (!post.frontMatter.pin)
       return (

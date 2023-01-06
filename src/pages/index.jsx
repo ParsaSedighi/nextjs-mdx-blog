@@ -1,10 +1,8 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
 import Post from '../components/Post';
 
 import { AiOutlinePushpin } from 'react-icons/ai';
 import { useState } from 'react';
+import getPosts from '../../helper/getPosts';
 
 export default function Home({ posts }) {
   const [isPinned, setIsPinned] = useState(false);
@@ -17,25 +15,23 @@ export default function Home({ posts }) {
     }
   }
   return (
-    <>
-      <main className="pb-7">
-        {isPinned ? (
-          <div className="p-6 mx-16 mt-12 rounded-lg md:mx-24 bg-gunmetal">
-            <div className="flex items-center mb-4 text-lg text-turquoise-blue">
-              <AiOutlinePushpin />
-              <p className="pl-1">Pinned</p>
-            </div>
-            <PostList posts={posts} pinned={true} />
+    <main className="pb-7">
+      {isPinned ? (
+        <div className="p-6 mx-16 mt-12 rounded-lg md:mx-24 bg-gunmetal">
+          <div className="flex items-center mb-4 text-lg text-turquoise-blue">
+            <AiOutlinePushpin />
+            <p className="pl-1">Pinned</p>
           </div>
-        ) : (
-          ''
-        )}
-
-        <div className="mx-16 md:mx-24 mt-7">
-          <PostList posts={posts} />
+          <PostList posts={posts} pinned={true} />
         </div>
-      </main>
-    </>
+      ) : (
+        ''
+      )}
+
+      <div className="mx-16 md:mx-24 mt-7">
+        <PostList posts={posts} />
+      </div>
+    </main>
   );
 }
 
@@ -64,20 +60,7 @@ const PostList = ({ className, posts, pinned = false }) => {
 };
 
 export const getStaticProps = async () => {
-  const files = fs.readdirSync(path.join('posts'));
-
-  const posts = files.map((filename) => {
-    const markdownWithMeta = fs.readFileSync(
-      path.join('posts', filename),
-      'utf-8'
-    );
-    const { data: frontMatter } = matter(markdownWithMeta);
-
-    return {
-      frontMatter,
-      slug: filename.split('.')[0],
-    };
-  });
+  const posts = getPosts();
 
   return {
     props: {

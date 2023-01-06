@@ -4,18 +4,33 @@ import matter from 'gray-matter';
 import Post from '../components/Post';
 
 import { AiOutlinePushpin } from 'react-icons/ai';
+import { useState } from 'react';
 
 export default function Home({ posts }) {
+  const [isPinned, setIsPinned] = useState(false);
+  if (!isPinned) {
+    for (let post of posts) {
+      if (post.frontMatter.pin) {
+        setIsPinned(true);
+        break;
+      }
+    }
+  }
   return (
     <>
       <main className="pb-7">
-        <div className="p-6 mx-16 mt-12 rounded-lg md:mx-24 bg-gunmetal">
-          <div className="flex items-center mb-4 text-lg text-turquoise-blue">
-            <AiOutlinePushpin />
-            <p className="pl-1">Pinned</p>
+        {isPinned ? (
+          <div className="p-6 mx-16 mt-12 rounded-lg md:mx-24 bg-gunmetal">
+            <div className="flex items-center mb-4 text-lg text-turquoise-blue">
+              <AiOutlinePushpin />
+              <p className="pl-1">Pinned</p>
+            </div>
+            <PostList posts={posts} pinned={true} />
           </div>
-          <PostList posts={posts} pinned={true} />
-        </div>
+        ) : (
+          ''
+        )}
+
         <div className="mx-16 md:mx-24 mt-7">
           <PostList posts={posts} />
         </div>

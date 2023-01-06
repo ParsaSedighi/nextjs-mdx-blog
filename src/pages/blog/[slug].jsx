@@ -3,22 +3,22 @@ import { MDXRemote } from 'next-mdx-remote';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import SyntaxHighlighter from 'react-syntax-highlighter';
 
-const components = { SyntaxHighlighter };
-
-const PostPage = ({ frontMatter: { title, date }, mdxSource }) => {
+const components = {};
+const PostPage = ({ data: { title, date }, mdxSource }) => {
   return (
-    <div className="p-8 mx-16 mt-10 rounded-md md:mx-24 bg-gunmetal">
-      <h1 className="flex font-serif text-4xl font-medium text-white">
-        {title}
-      </h1>
-      <p className="pt-2 pb-2 text-gray-400">{date}</p>
-      <br />
-      <div className="prose prose-invert max-w-none">
-        <MDXRemote {...mdxSource} components={components} />
+    <main className="pb-8">
+      <div className="p-8 mx-16 mt-10 rounded-md md:mx-24 bg-gunmetal ">
+        <h1 className="flex font-serif text-4xl font-medium text-white">
+          {title}
+        </h1>
+        <p className="pt-2 pb-2 text-gray-400">{date}</p>
+        <br />
+        <div className="prose prose-invert max-w-none">
+          <MDXRemote {...mdxSource} components={components} />
+        </div>
       </div>
-    </div>
+    </main>
   );
 };
 
@@ -43,12 +43,12 @@ const getStaticProps = async ({ params: { slug } }) => {
     'utf-8'
   );
 
-  const { data: frontMatter, content } = matter(markdownWithMeta);
+  const { data, content } = matter(markdownWithMeta);
   const mdxSource = await serialize(content);
 
   return {
     props: {
-      frontMatter,
+      data,
       slug,
       mdxSource,
     },

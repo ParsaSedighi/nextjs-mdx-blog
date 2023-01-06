@@ -1,14 +1,15 @@
 import Post from '../components/Post';
 
+import getPosts from '../../helper/getPosts';
+
 import { AiOutlinePushpin } from 'react-icons/ai';
 import { useState } from 'react';
-import getPosts from '../../helper/getPosts';
 
 export default function Home({ posts }) {
   const [isPinned, setIsPinned] = useState(false);
   if (!isPinned) {
     for (let post of posts) {
-      if (post.frontMatter.pin) {
+      if (post.data.pin) {
         setIsPinned(true);
         break;
       }
@@ -37,14 +38,14 @@ export default function Home({ posts }) {
 
 const PostList = ({ className, posts, pinned = false }) => {
   const pinnedPosts = posts.map((post, index) => {
-    if (post.frontMatter.pin)
+    if (post.data.pin)
       return (
         <Post className="rounded-md shadow-2xl" post={post} index={index} />
       );
   });
 
   const restPosts = posts.map((post, index) => {
-    if (!post.frontMatter.pin)
+    if (!post.data.pin)
       return (
         <Post className="rounded-md shadow-2xl" post={post} index={index} />
       );

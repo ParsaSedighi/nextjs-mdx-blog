@@ -12,10 +12,12 @@ const recent = ({ posts }) => {
 };
 
 const PostList = ({ className, posts }) => {
+  const postsArr = [];
   const allPosts = posts.map((post, index) => {
+    postsArr.push(post);
     return <Post className="rounded-md shadow-2xl" post={post} index={index} />;
   });
-
+  console.log(postsArr);
   return (
     <ul
       className={
@@ -26,8 +28,6 @@ const PostList = ({ className, posts }) => {
   );
 };
 
-export default recent;
-
 export const getStaticProps = () => {
   const posts = getPosts();
 
@@ -37,3 +37,5 @@ export const getStaticProps = () => {
     },
   };
 };
+
+export default recent;

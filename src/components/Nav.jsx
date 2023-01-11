@@ -1,9 +1,5 @@
 import Link from 'next/link';
-import {
-  AiOutlineHome,
-  AiOutlineFieldTime,
-  AiOutlineFire,
-} from 'react-icons/ai';
+import { AiOutlineHome, AiOutlineBlock, AiOutlineFire } from 'react-icons/ai';
 import { BiCategoryAlt, BiBookmark } from 'react-icons/bi';
 
 const Nav = () => {
@@ -26,9 +22,9 @@ const Nav = () => {
         <li key="2">
           <Link
             className="flex items-center space-x-1 hover:text-cadet-blue"
-            href="/recent">
-            <AiOutlineFieldTime className="w-5" />
-            <p>Recent</p>
+            href="/allposts">
+            <AiOutlineBlock className="w-5" />
+            <p>All posts</p>
           </Link>
         </li>
         <li key="3">

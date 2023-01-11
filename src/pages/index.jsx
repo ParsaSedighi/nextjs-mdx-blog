@@ -1,8 +1,9 @@
 import Post from '../components/Post';
 
 import getPosts from '../../helper/getPosts';
+import bubbleSort from '../../helper/bubbleSort';
 
-import { AiOutlinePushpin } from 'react-icons/ai';
+import { AiOutlinePushpin, AiOutlineFieldTime } from 'react-icons/ai';
 import { useState } from 'react';
 
 export default function Home({ posts }) {
@@ -30,6 +31,10 @@ export default function Home({ posts }) {
       )}
 
       <div className="mx-16 md:mx-24 mt-7">
+        <div className="flex items-center mb-4 ml-4 text-lg text-turquoise-blue">
+          <AiOutlineFieldTime />
+          <p className="pl-1">Recent</p>
+        </div>
         <PostList posts={posts} />
       </div>
     </main>
@@ -44,18 +49,26 @@ const PostList = ({ className, posts, pinned = false }) => {
       );
   });
 
-  const restPosts = posts.map((post, index) => {
-    if (!post.data.pin)
-      return (
-        <Post className="rounded-md shadow-2xl" post={post} index={index} />
-      );
+  var allPosts = [];
+  let temp = 8;
+  posts.map((post) => {
+    if (temp > 0) {
+      allPosts.push(post);
+      temp--;
+    }
+  });
+
+  bubbleSort(allPosts, allPosts.length);
+
+  const sortedPosts = allPosts.map((post, index) => {
+    return <Post className="rounded-md shadow-2xl" post={post} index={index} />;
   });
   return (
     <ul
       className={
         `grid gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 ` + className
       }>
-      {pinned ? pinnedPosts : restPosts}
+      {pinned ? pinnedPosts : sortedPosts}
     </ul>
   );
 };

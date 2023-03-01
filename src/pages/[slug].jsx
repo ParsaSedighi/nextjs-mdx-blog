@@ -11,13 +11,13 @@ const components = { CodeBlock };
 const PostPage = ({ data: { title, date }, mdxSource }) => {
   return (
     <main className="pb-8">
-      <div className="p-8 mx-16 mt-10 rounded-md md:mx-24 bg-gunmetal ">
-        <h1 className="flex font-serif text-4xl font-medium text-white">
+      <div className="p-8 mx-4 mt-10 rounded-md sm:mx-8 md:mx-24 bg-gunmetal ">
+        <h1 className="flex justify-center font-serif text-4xl font-medium text-white">
           {title}
         </h1>
-        <p className="pt-2 pb-2 text-gray-400">{date}</p>
+        <p className="flex justify-center pt-2 pb-2 text-gray-400">{date}</p>
         <br />
-        <div className="prose prose-invert max-w-none">
+        <div className="prose md:mx-6 prose-invert max-w-none">
           <MDXRemote {...mdxSource} components={components} />
         </div>
       </div>

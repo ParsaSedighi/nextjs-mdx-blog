@@ -28,7 +28,7 @@ const CodeBlock = ({ code, language }) => {
     <div className="relative">
       <button
         onClick={handleCopyClick}
-        className="absolute top-0 right-0 px-2 py-1 m-2 text-xs text-gray-400 bg-transparent rounded focus:outline-none">
+        className="absolute top-0 right-0 invisible px-2 py-1 m-2 text-xs text-gray-400 bg-transparent rounded sm:visible focus:outline-none">
         {isCopied ? 'Copied!' : 'Copy Code'}
       </button>
       <pre

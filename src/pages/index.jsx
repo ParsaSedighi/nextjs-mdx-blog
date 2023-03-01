@@ -3,8 +3,13 @@ import Post from '../components/Post';
 import getPosts from '../../helper/getPosts';
 import bubbleSort from '../../helper/bubbleSort';
 
-import { AiOutlinePushpin, AiOutlineFieldTime } from 'react-icons/ai';
+import {
+  AiOutlinePushpin,
+  AiOutlineFieldTime,
+  AiOutlineArrowRight,
+} from 'react-icons/ai';
 import { useState } from 'react';
+import Link from 'next/link';
 
 export default function Home({ posts }) {
   const [isPinned, setIsPinned] = useState(false);
@@ -34,9 +39,17 @@ export default function Home({ posts }) {
         <div className="flex items-center mb-4 ml-4 text-lg text-turquoise-blue">
           <AiOutlineFieldTime />
           <p className="pl-1">Recent</p>
+          <div className="flex-grow"></div>
+          <Link
+            href={{ pathname: '/posts', query: { filter: 'recent' } }}
+            className="flex items-center mr-4">
+            <p className="pr-1">View More</p>
+            <AiOutlineArrowRight />
+          </Link>
         </div>
         <PostList posts={posts} />
       </div>
+      <div className="mx-16 md:mx-24 mt-7"></div>
     </main>
   );
 }

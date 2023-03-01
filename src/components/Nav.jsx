@@ -22,7 +22,7 @@ const Nav = () => {
         <li key="2">
           <Link
             className="flex items-center space-x-1 hover:text-cadet-blue"
-            href="/allposts">
+            href="/posts">
             <AiOutlineBlock className="w-5" />
             <p>All posts</p>
           </Link>

@@ -1,0 +1,122 @@
+---
+title: 'Next.js for begginers'
+date: 'September 11, 2021'
+description: "A guide on how to start making Next.js projects"
+thumbnailUrl: '/nextjs-thumbnail.png'
+tags: ['nextjs']
+pin: false
+---
+
+Next.js is a powerful open-source framework that simplifies building server-rendered React applications. In this tutorial, we'll walk through the process of creating a basic Next.js application, including server-side rendering, automatic code splitting, and routing.
+
+## Prerequisites
+Before we begin, make sure you have Node.js and npm installed on your machine. You can check if Node.js is installed by running the following command in your terminal:
+
+<CodeBlock code={`node -v`} />
+
+If Node.js is installed, this command will return the version number. If not, you can download it from the official Node.js website.
+
+Getting Started
+To create a new Next.js application, open your terminal and run the following command:
+
+<CodeBlock code={`npx create-next-app my-app`} />
+
+This will create a new Next.js application in a directory called `my-app`.
+
+Once the installation is complete, navigate to the `my-app` directory and start the development server by running:
+
+<CodeBlock code={`cd my-app
+npm run dev`} />
+
+This will start the development server at `http://localhost:3000`. If you open this URL in your browser, you should see the default Next.js welcome page.
+
+## Server-side Rendering
+One of the key benefits of Next.js is its support for server-side rendering. This means that the initial page load is rendered on the server, and then the client-side JavaScript takes over.
+
+To create a server-side rendered page, create a new file in the `pages` directory called `about.js`. This file will define the `About` page component.
+
+<CodeBlock code={`const About = () => {
+  return (
+    <div>
+      <h1>About</h1>
+      <p>This is the about page</p>
+    </div>
+  );
+};
+
+export default About;`} language='javascript' />
+
+If you visit `http://localhost:3000/about`, you should now see the new About page, which is server-rendered.
+
+## Automatic Code Splitting
+
+Next.js automatically splits your code into smaller chunks, which can be loaded on demand. This can greatly improve the performance of your application by reducing the initial load time and allowing for faster subsequent page loads.
+
+To see this in action, create a new file in the `pages` directory called `dynamic.js`. This file will define a dynamic page component that imports a large library.
+
+<CodeBlock code={`import { useState } from 'react';
+import dynamic from 'next/dynamic';
+
+const DynamicComponent = dynamic(() => import('../components/large-library'), {
+  loading: () => <p>Loading...</p>,
+});
+
+const DynamicPage = () => {
+  const [showComponent, setShowComponent] = useState(false);
+
+  return (
+    <div>
+      <h1>Dynamic Page</h1>
+      <button onClick={() => setShowComponent(!showComponent)}>Toggle Component</button>
+      {showComponent && <DynamicComponent />}
+    </div>
+  );
+};
+
+export default DynamicPage;`} language='javascript' />
+
+When you visit `http://localhost:3000/dynamic`, you should see the new `Dynamic Page`. When you click the "Toggle Component" button, the large library will be loaded on demand, which can greatly improve the performance of your application.
+
+## Routing
+Next.js provides a simple and flexible routing system based on the file system. To create a new route, simply create a new file in the `pages` directory with the desired URL path.
+
+For example, to create a new `Contact` page, create a new file in the `pages` directory called `contact.js`:
+
+<CodeBlock code={`const Contact = () => {
+  return (
+    <div>
+      <h1>Contact</h1>
+      <p>This is the contact page</p>
+    </div>
+  );
+};
+
+export default Contact;`} language='javascript' />
+
+You can now access the `Contact` page at `http://localhost:3000/contact`.
+
+Next.js also provides a flexible routing API, which allows you to define dynamic routes and parameterized URLs. For example, you can create a dynamic route for blog posts by creating a file called `pages/posts/[slug].js`:
+
+
+<CodeBlock code={`import { useRouter } from 'next/router';
+
+const Post = () => {
+  const router = useRouter();
+  const { slug } = router.query;
+
+  return (
+    <div>
+      <h1>{slug}</h1>
+      <p>This is a blog post</p>
+    </div>
+  );
+};
+
+export default Post;`} language='javascript' />
+
+You can now access a blog post with any slug at `http://localhost:3000/posts/[slug]`.
+
+## Conclusion
+In this tutorial, we've covered the basics of building a server-rendered React application with Next.js. We've seen how Next.js provides automatic code splitting, flexible routing, and support for server-side rendering.
+
+While there's much more to explore with Next.js, this tutorial should give you a solid foundation for building your own server-rendered React application. Happy coding!

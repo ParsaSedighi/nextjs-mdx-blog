@@ -1,10 +1,13 @@
 import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemote } from 'next-mdx-remote';
+
+import CodeBlock from '../components/CodeBlock';
+
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
-const components = {};
+const components = { CodeBlock };
 const PostPage = ({ data: { title, date }, mdxSource }) => {
   return (
     <main className="pb-8">

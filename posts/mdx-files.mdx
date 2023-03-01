@@ -1,0 +1,82 @@
+---
+title: 'MDX Files'
+date: 'July 25, 2021'
+description: "Introduction to MDX files"
+thumbnailUrl: '/mdx-thumbnail.png'
+tags: ['mdx']
+pin: true
+---
+
+
+MDX files are a popular way to create dynamic and interactive content using React components within Markdown files. With MDX, you can use JSX syntax to include React components directly within your Markdown documents, allowing for greater flexibility and customization in your content.
+
+In this post, we'll explore how to use MDX files in your React projects, and how to create and use MDX components in your Markdown documents.
+
+## Creating an MDX file
+
+To create an MDX file, simply create a new file with a `.mdx` extension in your project directory. You can then use Markdown syntax, along with JSX syntax, to create your content.
+
+Here's an example of an MDX file that includes a simple React component:
+
+<CodeBlock code={`import MyComponent from '../components/MyComponent';
+
+# My MDX File
+
+This is some text in my MDX file.
+
+<MyComponent />
+`} >
+</CodeBlock>
+
+In this example, we've imported a React component called `MyComponent` from a file in our `components` directory, and included it within our Markdown content using JSX syntax.
+
+## Using MDX components
+
+To use an MDX component within your Markdown content, simply include it using JSX syntax, as we did in the previous example.
+
+You can also pass props to your MDX components, just as you would with regular React components. Here's an example:
+
+<CodeBlock code={`import MyComponent from '../components/MyComponent';
+
+# My MDX File
+
+This is some text in my MDX file.
+
+<MyComponent message="Hello, world!" />
+`}>
+</CodeBlock>
+
+In this example, we've passed a prop called `message` to our `MyComponent` component, with the value `"Hello, world!"`.
+
+## Styling MDX components
+
+You can style your MDX components using CSS, just as you would with regular React components. However, since MDX components are embedded within Markdown documents, you'll need to use a different approach to apply your styles.
+
+One way to do this is to use a CSS-in-JS library like [styled-components](https://styled-components.com/) or [emotion](https://emotion.sh/). These libraries allow you to define styles using JavaScript syntax, and then apply them to your components at runtime.
+
+Here's an example of how to use styled-components to style an MDX component:
+
+<CodeBlock code={`import styled from 'styled-components';
+
+const MyStyledComponent = styled.div\`
+  color: red;
+\`;
+
+# My MDX File
+
+This is some text in my MDX file.
+
+<MyStyledComponent>
+  This text will be styled in red.
+</MyStyledComponent>
+`}>
+
+</CodeBlock>
+
+In this example, we've defined a new styled component called `MyStyledComponent` using styled-components, and then included it within our Markdown content using JSX syntax.
+
+## Conclusion
+
+MDX files are a powerful tool for creating dynamic and interactive content within your Markdown documents. With MDX, you can use React components directly within your Markdown content, allowing for greater flexibility and customization in your projects.
+
+In this post, we've explored how to create and use MDX files in your React projects, and how to style your MDX components using CSS-in-JS libraries like styled-components.

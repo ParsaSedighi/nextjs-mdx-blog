@@ -17,7 +17,7 @@ const PostPage = ({ data: { title, date }, mdxSource }) => {
         </h1>
         <p className="flex justify-center pt-2 pb-2 text-gray-400">{date}</p>
         <br />
-        <div className="prose md:mx-6 prose-invert max-w-none">
+        <div className="prose prose-invert max-w-none md:mx-6">
           <MDXRemote {...mdxSource} components={components} />
         </div>
       </div>

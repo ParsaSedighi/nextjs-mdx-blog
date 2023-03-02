@@ -1,0 +1,103 @@
+---
+title: 'ReactJs begginer guide'
+date: 'January 6, 2023'
+description: "Explore the basics of building robust user interfaces with React JS"
+thumbnailUrl: '/reactjs-thumbnail.png'
+tags: ['reactjs']
+pin: false
+---
+
+React JS is a popular JavaScript library for building user interfaces. It was developed by Facebook and is now widely used by developers all over the world. React JS allows developers to create reusable UI components and render them efficiently in web applications.
+
+In this blog post, we will explore the basics of React JS and how it can be used to build robust and responsive user interfaces.
+
+## Getting Started with React JS
+To start using React JS, you need to have a basic understanding of HTML, CSS, and JavaScript. You also need to have Node.js installed on your computer.
+
+Once you have Node.js installed, you can create a new React project using the create-react-app command. This command will create a new React project with all the necessary files and dependencies.
+
+<CodeBlock code={`npx create-react-app my-app
+cd my-app
+npm start
+`} >
+</CodeBlock>
+
+The above commands will create a new React project called `my-app` and start the development server. You can now start editing the `src/App.js` file and see the changes in real-time on your browser.
+
+## Components in React JS
+Components are the building blocks of a React application. A component is a self-contained piece of code that can be reused throughout your application. React provides two types of components: functional and class components.
+
+### Functional Components
+Functional components are simple JavaScript functions that return a React element. They are also known as stateless components because they do not have any state of their own.
+
+<CodeBlock code={`function Welcome(props) {
+  return <h1>Hello, {props.name}!</h1>;
+}
+
+ReactDOM.render(
+  <Welcome name="John" />,
+  document.getElementById('root')
+);
+
+`}>
+</CodeBlock>
+
+In the above example, we have created a functional component called `Welcome`. It takes a `props` object as an argument and returns a React element that displays a greeting message.
+
+### Class Components
+Class components are more powerful than functional components because they can have state and lifecycle methods. They are defined using ES6 classes and extend the `React.Component` class.
+
+<CodeBlock code={`class Clock extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {date: new Date()};
+  }
+
+  componentDidMount() {
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000
+    );
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timerID);
+  }
+
+  tick() {
+    this.setState({
+      date: new Date()
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Hello, world!</h1>
+        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(
+  <Clock />,
+  document.getElementById('root')
+);
+
+`}>
+
+</CodeBlock>
+
+In the above example, we have created a class component called `Clock`. It has a state object that stores the current date and time. It also has lifecycle methods like `componentDidMount` and `componentWillUnmount` that allow us to run code at specific points in the component's lifecycle.
+
+## JSX in React JS
+JSX is a syntax extension for JavaScript that allows us to write HTML-like code in our JavaScript files. JSX makes it easier to write and read code because it allows us to mix HTML and JavaScript in a single file.
+
+<CodeBlock code={`const element = <h1>Hello, {name}!</h1>;`} >
+</CodeBlock>
+
+In the above example, we have created a JSX element that displays a greeting message with the value of the `name` variable.
+
+## Conclusion
+React JS is a powerful and popular JavaScript library for building user interfaces. It provides developers with a simple and efficient way to create reusable UI components and render them in web applications.

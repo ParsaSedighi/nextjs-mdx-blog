@@ -8,3 +8,18 @@ html {
   background-attachment: fixed;
   background-position: center bottom;
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background-color: #0f1419;
+}
+::-webkit-scrollbar-button {
+  display: none;
+}
+::-webkit-scrollbar-thumb {
+  background: #3a4750;
+  border-radius: 8px;
+}

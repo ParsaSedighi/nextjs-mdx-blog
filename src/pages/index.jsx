@@ -1,7 +1,7 @@
 import Post from '../components/Post';
 
 import getPosts from '../../helper/getPosts';
-import bubbleSort from '../../helper/bubbleSort';
+import mergeSort from '../../helper/mergeSortDates';
 
 import {
   AiOutlinePushpin,
@@ -71,7 +71,7 @@ const PostList = ({ className, posts, pinned = false }) => {
     }
   });
 
-  bubbleSort(allPosts, allPosts.length);
+  mergeSort(allPosts);
 
   const sortedPosts = allPosts.map((post, index) => {
     return <Post className="rounded-md shadow-2xl" post={post} index={index} />;

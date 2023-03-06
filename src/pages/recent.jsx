@@ -1,6 +1,7 @@
 import getPosts from '../../helper/getPosts';
 import Post from '../components/Post';
 import bubbleSort from '../../helper/bubbleSort';
+import mergeSort from '../../helper/mergeSortDates';
 
 const recent = ({ posts }) => {
   return (
@@ -18,7 +19,8 @@ const PostList = ({ className, posts }) => {
     allPosts.push(post);
   });
 
-  bubbleSort(allPosts, allPosts.length);
+  // bubbleSort(allPosts, allPosts.length);
+  mergeSort(allPosts);
 
   const sortedPosts = allPosts.map((post, index) => {
     return <Post className="rounded-md shadow-2xl" post={post} index={index} />;

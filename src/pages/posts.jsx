@@ -23,7 +23,7 @@ const posts = ({ posts }) => {
   return (
     <>
       <div className="mx-16 md:mx-24 mt-7">
-        <div className="w-1/12">
+        <div className="w-24">
           <Dropdown options={['Title', 'Date']} />
         </div>
       </div>

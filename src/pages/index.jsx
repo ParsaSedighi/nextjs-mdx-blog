@@ -57,9 +57,7 @@ export default function Home({ posts }) {
 const PostList = ({ className, posts, pinned = false }) => {
   const pinnedPosts = posts.map((post, index) => {
     if (post.data.pin)
-      return (
-        <Post className="rounded-md shadow-2xl" post={post} index={index} />
-      );
+      return <Post className="rounded-md shadow-2xl" post={post} key={index} />;
   });
 
   var allPosts = [];
@@ -74,7 +72,7 @@ const PostList = ({ className, posts, pinned = false }) => {
   mergeSort(allPosts);
 
   const sortedPosts = allPosts.map((post, index) => {
-    return <Post className="rounded-md shadow-2xl" post={post} index={index} />;
+    return <Post className="rounded-md shadow-2xl" post={post} key={index} />;
   });
   return (
     <ul

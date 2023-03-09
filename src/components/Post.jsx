@@ -1,14 +1,15 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-const Post = ({ className, post, index }) => {
+const Post = ({ className, post }) => {
   return (
-    <li className={className} key={index}>
+    <li className={className}>
       <Link href={'/' + post.slug} passHref>
         <div className="relative transition-all group hover:scale-105">
           <Image
             className="object-cover transition-all rounded-md h-56 brightness-[0.15] group-hover:brightness-[0.25] grayscale group-hover:grayscale-0 max-h-56"
             src={post.data.thumbnailUrl}
+            alt=""
             width="500"
             height="400"
           />

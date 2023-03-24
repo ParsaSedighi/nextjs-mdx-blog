@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-export default function Dropdown({ options }) {
-  const [selectedOption, setSelectedOption] = useState(options[0]);
+export default function Dropdown({ options, defaultOption }) {
+  if (!defaultOption) {
+    defaultOption = options[0];
+  }
+  const [selectedOption, setSelectedOption] = useState(defaultOption);
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -34,7 +37,10 @@ export default function Dropdown({ options }) {
       <div
         className="bg-gunmetal rounded-md py-2 px-4 text-gray-400 cursor-pointer"
         onClick={toggleDropdown}>
-        {selectedOption} <span className="ml-1">&#x25BE;</span>
+        <div className="flex justify-between">
+          <div>{selectedOption}</div>
+          <span className="ml-1">&#x25BE;</span>
+        </div>
       </div>
       {isOpen && (
         <div className="absolute z-50 w-full mt-2 rounded-md bg-gunmetal shadow-lg">

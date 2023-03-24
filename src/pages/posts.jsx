@@ -22,9 +22,27 @@ const posts = ({ posts }) => {
 
   return (
     <>
-      <div className="mx-16 md:mx-24 mt-7">
-        <div className="w-24">
-          <Dropdown options={['Title', 'Date']} />
+      <div className="mx-16 mt-8 md:mx-24">
+        <div className="items-center justify-center w-full md:flex md:flex-row-reverse">
+          <div className="flex items-center space-x-10 md:w-1/2">
+            <div className="flex-grow">
+              <Dropdown
+                defaultOption={'Categories'}
+                options={[
+                  'Category 1',
+                  'Category 2',
+                  'Category 3',
+                  'Category 4',
+                ]}
+              />
+            </div>
+            <div className="w-fit">
+              <Dropdown defaultOption={'Sort by'} options={['Title', 'Date']} />
+            </div>
+          </div>
+          <div className="justify-center mx-1 mt-5 text-xl text-gray-300 md:m-0 md:w-1/2">
+            {0} Posts found
+          </div>
         </div>
       </div>
     </>

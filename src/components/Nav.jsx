@@ -38,7 +38,7 @@ const Nav = () => {
           className={
             showMenu
               ? `block opacity-100 transition-all md:hidden`
-              : `absolute -z-50 opacity-0 transition-all md:hidden`
+              : `absolute opacity-0 -z-50 -translate-y-96 transition-all md:hidden`
           }>
           <div className="p-6 rounded-lg md:mx-24 bg-gunmetal">
             <ul className="mx-8 space-y-1">
